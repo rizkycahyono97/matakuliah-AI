@@ -136,6 +136,13 @@ Berikut adalah contoh visualisasi hasil prediksi:
 
 ---
 
+## **Dataset**
+```bash
+https://www.kaggle.com/datasets/rizkycahyono/pets-anjing-kucing/
+```
+
+---
+
 ## **Kontribusi**
 Jika Anda ingin berkontribusi atau memiliki pertanyaan, silakan buat issue atau pull request.
 
