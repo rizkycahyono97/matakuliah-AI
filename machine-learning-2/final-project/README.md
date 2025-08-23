@@ -1,46 +1,70 @@
-# Instruksi Tugas Kelompok – Pembelajaran Mesin 2
+# Klasifikasi Citra Menggunakan Model CNN
 
-## Topik Pilihan
-Setiap kelompok diminta untuk memilih **satu** dari topik berikut:  
-1. **Deteksi Objek** menggunakan RCNN atau SSD  
-2. **Self-Supervised Learning (SimCLR)** dengan downstream task berupa klasifikasi citra  
-3. **Image Classification** menggunakan arsitektur CNN klasik seperti VGGNet atau ResNet  
-4. **Transformer untuk Machine Translation**  
+## Anggota Kelompok
+- Rizky Cahyono Putra (rizkycahyonoputra80@student.cs.unida.gontor.ac.id)  
+- M. Irfansyah (mirfansyah26@student.cs.unida.gontor.ac.id)  
+- Raffa Arvel Nafi’Nadindra (raffaarvel@gmail.com)  
+- Muhammad Galang Fachrezy (muhammadgalangfachrezy22@student.cs.unida.gontor.ac.id)  
+- Syaifan Nur Iwawan (syaifannoeriwawan78@student.cs.unida.gontor.ac.id)  
 
-## Ketentuan Tugas
-- Tugas dikerjakan secara **berkelompok**.  
-- Setiap kelompok wajib menulis laporan dengan format **IEEE Conference**.  
-- Sertakan **kode program** dan **hasil eksperimen** (misalnya akurasi, loss curve, confusion matrix, dll.).  
-- Laporan harus berisi:  
-  - Latar Belakang  
-  - Metode (arsitektur/model yang dipilih)  
-  - Implementasi (dataset, preprocessing, kode utama)  
-  - Hasil dan Analisis  
-  - Kesimpulan  
+## Abstrak
+Klasifikasi citra merupakan salah satu permasalahan penting dalam bidang *computer vision*. Penelitian ini berfokus pada implementasi Convolutional Neural Network (CNN) dengan arsitektur klasik (ResNet-18/VGG16) untuk menyelesaikan permasalahan klasifikasi citra pada dataset **Intel Image Classification**. Dataset terdiri dari enam kelas citra pemandangan: *buildings, forest, glacier, mountain, sea, street* dengan total sekitar 25.000 gambar ukuran 150 × 150 piksel. Preprocessing dilakukan dengan resizing, normalisasi, serta data augmentation. Model dilatih menggunakan *categorical cross-entropy* dan Adam optimizer, mencapai akurasi **86%** pada data uji.  
 
-## Rubrik Penilaian Laporan
-Total bobot = **100%**  
+**Kata kunci:** klasifikasi citra, CNN, deep learning, TensorFlow.
 
-| Aspek Penilaian | Bobot | Tingkatan Penilaian |
-|------------------|--------|---------------------|
-| **1. Pemahaman Topik** | 20% | (4) Sangat jelas, runtut, dan kontekstual (20%) <br> (3) Cukup jelas namun kurang terstruktur (15%) <br> (2) Umum dan dangkal (10%) <br> (1) Tidak sesuai/kurang tepat (5%) |
-| **2. Desain Metode & Implementasi** | 30% | (4) Metode dipilih tepat, implementasi lengkap dan benar (30%) <br> (3) Metode cukup tepat, implementasi sebagian kurang detail (23%) <br> (2) Implementasi dangkal/tidak konsisten (15%) <br> (1) Salah konsep atau minim implementasi (7%) |
-| **3. Eksperimen & Hasil** | 25% | (4) Eksperimen lengkap dengan analisis mendalam (25%) <br> (3) Eksperimen memadai namun analisis terbatas (19%) <br> (2) Eksperimen minim dan analisis dangkal (12%) <br> (1) Tidak ada eksperimen yang berarti (6%) |
-| **4. Laporan (IEEE Format)** | 15% | (4) Struktur sesuai IEEE, sangat rapi (15%) <br> (3) Ada kesalahan kecil format (11%) <br> (2) Banyak kesalahan format (7%) <br> (1) Tidak mengikuti format (3%) |
-| **5. Presentasi & Diskusi** | 10% | (4) Presentasi jelas, mampu menjawab pertanyaan dengan baik (10%) <br> (3) Presentasi baik, jawaban sebagian kurang meyakinkan (8%) <br> (2) Presentasi kurang terstruktur, jawaban tidak memadai (5%) <br> (1) Tidak siap atau tidak bisa menjawab (2%) |
+---
 
+## I. Pendahuluan
+Klasifikasi citra merupakan topik penting dalam *machine learning* dan *computer vision*. CNN menjadi pendekatan utama karena mampu mengekstraksi fitur spasial gambar secara hierarkis. Proyek ini menggunakan dataset **Intel Image Classification** (6 kelas: bangunan, hutan, gunung, laut, jalan, es) dengan tujuan membangun model CNN yang akurat.
 
-# Rubrik Penilaian Presentasi Tugas Kelompok
+## II. Metode
+### A. Dataset
+- Total ~25.000 gambar resolusi 150x150 px  
+- Dibagi menjadi:
+  - Train: 14.000 gambar  
+  - Test: 3.000 gambar  
+  - Predict: 7.000 gambar  
+- Kelas: Buildings, Forest, Mountain, Sea, Street, Glacier  
 
-| Aspek Penilaian | Bobot | Tingkatan Penilaian |
-|-----------------|-------|---------------------|
-| **1. Struktur & Alur Presentasi** | 25% | (4) Alur sangat runtut, mudah dipahami, waktu terkelola baik (25%) <br> (3) Alur cukup runtut, ada sedikit ketidakteraturan (19%) <br> (2) Alur kurang jelas, banyak bagian lompat-lompat (13%) <br> (1) Tidak terstruktur, membingungkan (7%) |
-| **2. Pemahaman Materi** | 25% | (4) Sangat menguasai topik, menjawab pertanyaan dengan tepat dan meyakinkan (25%) <br> (3) Menguasai sebagian besar topik, jawaban cukup memadai (19%) <br> (2) Pemahaman dangkal, jawaban kurang tepat (13%) <br> (1) Tidak memahami topik, tidak bisa menjawab (7%) |
-| **3. Visualisasi & Media** | 20% | (4) Slide/visual sangat menarik, ringkas, informatif (20%) <br> (3) Slide cukup baik, namun masih terlalu padat atau kurang konsisten (15%) <br> (2) Visual kurang jelas atau tidak mendukung presentasi (10%) <br> (1) Tidak ada/visual sangat buruk (5%) |
-| **4. Kolaborasi Tim** | 15% | (4) Semua anggota berkontribusi seimbang dan kompak (15%) <br> (3) Sebagian anggota dominan, tapi masih ada kerja sama (11%) <br> (2) Hanya 1–2 anggota yang aktif, lainnya pas
+### B. Arsitektur Model
+CNN berbasis ResNet-18/VGG16, terdiri dari lapisan konvolusi (ReLU, BatchNorm, MaxPooling), fully connected, serta output *softmax*.  
+Jika transfer learning digunakan, bobot awal pretrained ImageNet dengan fine-tuning.  
 
-# Jadwal dan Aturan Presentasi Tugas Kelompok
-1. Kelas A1 - Tanggal 26 Agustus 2025 pukul 09.00 WIB (Luring)
-1. Kelas A2 - Tanggal 27 Agustus 2025 pukul 09.00 WIB (Luring)
-1. Kelas C1 - Tanggal 28 Agustus 2025 pukul 09.00 WIB (Daring)
-1. Wajib hadir 5 menit sebelum presentasi
+### C. Implementasi
+Menggunakan **TensorFlow/Keras** di Kaggle.  
+Tahapan preprocessing: resizing ke 150x150 px, normalisasi [0-1], RGB conversion, labeling, dan shuffling data.  
+
+Model CNN terdiri dari:
+- Conv2D (feature extraction)  
+- MaxPooling2D (downsampling)  
+- Flatten (konversi 2D ke 1D)  
+- Dense (klasifikasi)  
+- Dropout (mencegah overfitting)  
+- Softmax (probabilitas kelas)  
+
+Total parameter: ~6.8 juta.  
+
+### D. Transfer Learning
+Menggunakan **EfficientNetB0** pretrained ImageNet, layer dasar dibekukan, ditambah dense layer baru untuk 6 kelas.  
+
+### E. Training
+- Epochs = 20  
+- Menggunakan validation data  
+- *ReduceLROnPlateau* untuk adaptive learning rate  
+
+## III. Hasil dan Analisis
+### A. Grafik Akurasi dan Loss
+Model konvergen dengan baik. Akurasi meningkat stabil, terdapat sedikit overfitting ringan. Loss training menurun konsisten, validation loss menurun dengan fluktuasi kecil.  
+
+### B. Confusion Matrix
+- Performa terbaik pada kelas *forest* dan *sea*.  
+- Kesalahan sering terjadi antara *building vs street* dan *glacier vs mountain* karena karakteristik mirip.  
+
+### C. Evaluasi
+Model mencapai **86% akurasi** pada data uji.  
+
+## IV. Kesimpulan
+CNN berhasil diimplementasikan untuk klasifikasi citra pemandangan dengan Intel Image Classification dataset, menghasilkan akurasi **86%**. Meskipun terdapat kesalahan pada kelas dengan visual mirip, model tetap mampu melakukan generalisasi dengan baik.  
+
+## Referensi
+1. P. Bansal, “Intel Image Classification Dataset,” Kaggle, 2019. [Link](https://www.kaggle.com/puneet6060/intel-image-classification)
