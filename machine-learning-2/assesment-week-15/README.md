@@ -1,81 +1,91 @@
-# Tugas Individu: Machine Translation dengan PyTorch  
-**Mata Kuliah:** Pembelajaran Mesin 2  
-**Topik:** Penerapan Deep Learning dalam NLP dan Skenario Nyata (Machine Translation)
+# Penerjemahan Mesin Saraf (NMT) Inggris-Indonesia dengan PyTorch
 
----
+Proyek ini mengimplementasikan dan membandingkan dua arsitektur *Neural Machine Translation* (NMT) modern untuk tugas penerjemahan dari bahasa Inggris ke bahasa Indonesia. Arsitektur yang diimplementasikan adalah model *sequence-to-sequence* berbasis RNN dengan *Attention* sebagai *baseline*, dan model Transformer.
 
-## Tujuan Pembelajaran
-- Membangun sistem penerjemah otomatis berbasis deep learning.  
-- Membandingkan baseline RNN+Attention dengan Transformer (wajib).  
-- Mengevaluasi performa dengan metrik standar (mis. SacreBLEU, chrF) serta menulis laporan ilmiah sesuai format IEEE.  
+## Fitur
 
----
+* **Preprocessing Data**: Termasuk pembersihan data, tokenisasi sub-kata menggunakan Byte-Pair Encoding (BPE), dan pembagian dataset menjadi set latih, validasi, dan uji.
+* **Model Baseline**: Implementasi arsitektur Encoder-Decoder dengan GRU dan mekanisme atensi Bahdanau.
+* **Model Transformer**: Implementasi arsitektur Transformer "Attention Is All You Need" menggunakan modul bawaan PyTorch.
+* **Pelatihan & Evaluasi**: Skrip untuk melatih kedua model dari awal dan mengevaluasi performanya menggunakan metrik SacreBLEU.
+* **Studi Ablasi**: Eksperimen untuk menganalisis dampak kedalaman (jumlah layer) pada performa model Transformer.
+* **Notebook Lengkap**: Semua kode disajikan dalam satu file Jupyter Notebook (`.ipynb`) untuk kemudahan reproduksi.
 
-## Setup
-- Siapkan environment Python dengan dependensi sesuai kebutuhan.  
-- Gunakan dataset penerjemahan bilingual (misalnya EN–ID atau pasangan bahasa lain yang relevan).  
-- Lakukan preprocessing: pembersihan data, tokenisasi subword (BPE/SentencePiece), serta pembagian data train/valid/test.  
-- Dataset diambil dari https://www.manythings.org/anki/
+## Dataset
 
----
+Proyek ini menggunakan dataset bilingual Inggris-Indonesia yang bersumber dari [ManyThings.org (Anki)](https://www.manythings.org/anki/). Dataset ini berisi sekitar 14.881 pasang kalimat paralel.
 
-## Tugas yang Harus Dilakukan
+## Persyaratan
 
-### 1) Persiapan Data
-- Unduh dan bersihkan dataset.  
-- Lakukan tokenisasi subword dan simpan model vocab.  
-- Buat pembagian data train/valid/test dengan rasio yang jelas.  
+Proyek ini dibuat dengan Python 3. Semua dependensi yang dibutuhkan tercantum dalam file `requirements.txt`.
 
-### 2) Implementasi Baseline (RNN + Attention)
-- Implementasikan arsitektur encoder–decoder dengan attention.  
-- Latih model hingga konvergen, catat metrik pelatihan dan validasi.  
+* `torch`
+* `tokenizers`
+* `scikit-learn`
+* `tqdm`
+* `sacrebleu`
+* `numpy`
 
-### 3) Implementasi Transformer (Wajib)
-- Implementasikan arsitektur encoder–decoder Transformer.  
-- Gunakan teknik tambahan seperti label smoothing atau warmup learning rate (opsional).  
-- Bandingkan hasilnya dengan baseline.  
+## Instalasi
 
-### 4) Evaluasi & Analisis
-- Gunakan metrik SacreBLEU (wajib) dan chrF (opsional).  
-- Sajikan contoh hasil terjemahan dan analisis kesalahan.  
-- Lakukan ablation study minimal satu variabel (misalnya ukuran vocab, dropout, beam size).  
+1.  **Clone Repositori**
+    ```bash
+    git clone [https://github.com/URL-REPO-ANDA/nama-repo.git](https://github.com/URL-REPO-ANDA/nama-repo.git)
+    cd nama-repo
+    ```
 
-### 5) Laporan
-- Tulis laporan dengan format IEEE Conference (Word/LaTeX).  
-- Struktur laporan minimal mencakup: Abstract, Introduction, Related Work, Method, Experiments, Results & Discussion, Conclusion, References.  
-- Sertakan tabel metrik, kurva pelatihan, dan analisis hasil.  
+2.  **Buat Virtual Environment (Direkomendasikan)**
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # Untuk Linux/macOS
+    # venv\Scripts\activate    # Untuk Windows
+    ```
 
----
+3.  **Instal Dependensi**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-## Aturan
-- Wajib menggunakan PyTorch.  
-- Dilarang menggunakan model siap pakai tanpa penjelasan.  
-- Semua sumber data atau kode pihak ketiga harus dicantumkan secara jelas.  
----
+4.  **Unduh Dataset**
+    * Unduh dataset `ind.txt` dari [tautan ini](https://www.manythings.org/anki/ind-eng.zip).
+    * Ekstrak dan letakkan file `ind.txt` di direktori utama proyek.
 
-## Pengumpulan
-- Kumpulkan repository berisi kode dan dokumentasi berupa tautan github.  
-- Lampirkan laporan dalam format PDF IEEE Conference.  
-- Sertakan hasil eksperimen (checkpoints, logs, grafik, evaluasi).  
-- Penamaan file laporan nama_mahasiswa_nim.pdf
-- Penamaan file tanpa ada spasi.
-- Upload di LMS El-Qalam
----
+## Cara Penggunaan
 
-## Rubrik Penilaian (Total 100%)
-| Aspek Penilaian | Bobot | Tingkatan (4) | Tingkatan (3) | Tingkatan (2) | Tingkatan (1) |
-|-----------------|-------|---------------|---------------|---------------|---------------|
-| **Pemahaman & Formulasi Masalah** | 10% | Sangat jelas dan kontekstual (10%) | Cukup jelas (8%) | Umum dan dangkal (5%) | Tidak tepat (2%) |
-| **Data & Preprocessing** | 15% | Lengkap, valid, dan terdokumentasi (15%) | Sebagian lengkap (12%) | Minim dokumentasi (8%) | Tidak jelas (4%) |
-| **Implementasi Baseline** | 15% | Lengkap dan stabil (15%) | Ada minor kekurangan (12%) | Tidak stabil (8%) | Tidak berjalan (4%) |
-| **Implementasi Transformer** | 30% | Lengkap, stabil, hasil baik (30%) | Hasil cukup (24%) | Hasil marginal (16%) | Tidak berjalan (8%) |
-| **Evaluasi & Analisis** | 25% | Lengkap, mendalam, dengan ablation (25%) | Cukup lengkap (19%) | Dangkal (12%) | Minim evaluasi (6%) |
-| **Laporan IEEE** | 5% | Rapi dan sesuai format (5%) | Minor kesalahan (4%) | Banyak kesalahan (3%) | Tidak sesuai (1%) |
+Semua langkah, mulai dari preprocessing hingga evaluasi, terdapat di dalam Jupyter Notebook `machine-translation-nlp-pytorch.ipynb`. Buka notebook ini dan jalankan sel-sel kode secara berurutan.
 
----
+Berikut adalah alur kerja utama di dalam notebook:
 
-## Studi Kasus
-- Pilih pasangan bahasa (disarankan EN–ID).  
-- Jelaskan alasan pemilihan dataset.  
-- Identifikasi tantangan khusus (morfologi, OOV, idiom, dll.).  
-- Bandingkan hasil baseline dengan Transformer dan berikan analisis kesalahan.  
+1.  **Tahap 1: Persiapan Data**
+    * Sel-sel di bagian awal akan memuat file `ind.txt`.
+    * Melatih tokenizer BPE untuk bahasa Inggris dan Indonesia, menyimpannya di direktori `tokenizers/`.
+    * Membagi dataset menjadi file latih, validasi, dan uji, menyimpannya di direktori `data_split/`.
+
+2.  **Tahap 2: Model Baseline (RNN + Attention)**
+    * Definisi arsitektur model Encoder, Decoder, Attention, dan Seq2Seq.
+    * Menjalankan *training loop* untuk model baseline. Model terbaik akan disimpan sebagai `baseline-rnn-model.pt`.
+    * Evaluasi model baseline pada *test set* untuk mendapatkan skor BLEU dan melihat contoh terjemahan.
+
+3.  **Tahap 3: Model Transformer**
+    * Definisi arsitektur model Transformer.
+    * Menjalankan *training loop* untuk model Transformer. Model terbaik akan disimpan sebagai `transformer-model.pt`.
+    * Evaluasi model Transformer untuk mendapatkan skor BLEU dan membandingkannya dengan *baseline*.
+
+4.  **Tahap 4: Studi Ablasi**
+    * Definisi arsitektur Transformer yang dimodifikasi (dengan 1 layer).
+    * Melatih dan mengevaluasi model yang dimodifikasi untuk menganalisis dampak perubahan arsitektur.
+
+## Hasil
+
+Hasil eksperimen menunjukkan bahwa model Transformer mencapai *validation loss* yang lebih rendah dibandingkan model RNN, mengindikasikan potensi belajar yang lebih baik. Namun, karena waktu pelatihan yang terbatas (10-15 epoch), kedua model belum sepenuhnya konvergen dan menghasilkan skor BLEU yang sangat rendah.
+
+| Model             | Konfigurasi      | Val. Loss | Val. PPL | BLEU Score |
+| ----------------- | ---------------- | :-------: | :------: | :--------: |
+| RNN + Attention   | Baseline         |   4.482   |  88.44   |    0.07    |
+| Transformer       | 3 Layers         | **4.213** | **67.59**|    0.01    |
+| Transformer       | 1 Layer (Ablasi) |   4.458   |  86.28   |    0.01    |
+
+Studi ablasi menunjukkan bahwa mengurangi kedalaman model Transformer dari 3 layer menjadi 1 layer meningkatkan *validation loss*, yang mengonfirmasi pentingnya arsitektur yang dalam untuk tugas ini.
+
+Untuk detail lebih lanjut, silakan merujuk ke laporan `laporan-penelitian.docx`.
+
